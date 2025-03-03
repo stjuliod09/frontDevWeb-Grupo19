@@ -1,0 +1,34 @@
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #fff9f2;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    padding-top: 50px;
+    box-sizing: border-box;
+  }
+  
+  .side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .side-menu li {
+    margin-bottom: 15px;
+  }
+  
+  .side-menu li a {
+    text-decoration: none;
+    color: #ff6f61;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .side-menu li a:hover {
+    color: #e65c50;
+  }
+  

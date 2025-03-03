@@ -1,0 +1,67 @@
+/* Contenedor que centra el formulario de edición */
+.edit-cat-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    padding: 20px;
+    background-color: #fff9f2;
+    box-sizing: border-box;
+  }
+  
+  /* Tarjeta que contiene el formulario */
+  .edit-cat-container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff9f2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Título */
+  .edit-cat-container h2 {
+    color: #ff6f61;
+    margin-bottom: 20px;
+  }
+  
+  /* Grupos de formulario */
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Botón de envío */
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #e65c50;
+  }
+  

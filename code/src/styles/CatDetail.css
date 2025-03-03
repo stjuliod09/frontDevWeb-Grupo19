@@ -1,0 +1,67 @@
+/* Contenedor que ocupa toda la pantalla */
+.cat-detail-container {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #fff9f2; /* Mantiene la paleta de colores cálida */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Evita que el contenido toque los bordes */
+    box-sizing: border-box;
+  }
+  
+  /* Contenedor principal del detalle */
+  .cat-detail {
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff9f2;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Título */
+  .cat-detail h2 {
+    color: #ff6f61;
+    margin-bottom: 20px;
+  }
+  
+  /* Envoltura de la foto */
+  .cat-photo-wrapper {
+    margin-bottom: 20px;
+  }
+  
+  /* Foto del gato */
+  .cat-photo-detail {
+    width: 220px;
+    height: 220px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  /* Información del gato */
+  .cat-detail p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 1em;
+    text-align: left;
+  }
+  
+  /* Botón / Link para volver */
+  .cat-detail a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cat-detail a:hover {
+    background-color: #e65c50;
+  }
+  

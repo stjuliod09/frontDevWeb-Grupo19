@@ -1,0 +1,90 @@
+/* Contenedor principal que centra el contenido */
+.adoption-requests-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100vw;
+    padding: 40px 20px;
+    background-color: #fff9f2;
+    box-sizing: border-box;
+  }
+  
+  /* Tarjeta que contiene la lista de solicitudes */
+  .adoption-requests-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff9f2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  .adoption-requests-container h2 {
+    color: #ff6f61;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Lista de solicitudes */
+  .requests-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Cada solicitud */
+  .request-item {
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .request-item h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .request-item p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  /* Botones de acción */
+  .request-buttons {
+    margin-top: 10px;
+    display: flex;
+    width:30%;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .accept-btn,
+  .reject-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .accept-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .accept-btn:hover {
+    background-color: #218838;
+  }
+  
+  .reject-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .reject-btn:hover {
+    background-color: #c82333;
+  }
+  

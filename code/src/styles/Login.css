@@ -1,0 +1,84 @@
+/* Asegúrate de que html y body ocupen toda la pantalla */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Contenedor padre que centra el login-container */
+  .login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff9f2; /* Fondo general, opcional */
+  }
+  
+  /* Estilos del formulario (sin cambios) */
+  .login-container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff9f2; 
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+  }
+  
+  .cat-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+  }
+  
+  .login-container h2 {
+      color: #ff6f61;
+      margin-bottom: 10px;
+  }
+  
+  .tagline {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 20px;
+  }
+  
+  .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+  }
+  
+  .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+  }
+  
+  .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+  }
+  
+  button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+      background-color: #e65c50;
+  }
+  
