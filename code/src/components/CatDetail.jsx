@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../styles/CatDetail.css';
+import SideMenu from './SideMenu';
 
 const cats = [
   {
@@ -19,7 +20,8 @@ const cats = [
     age: '3 años',
     health: 'Excelente',
     personality: 'Tranquilo y relajado',
-    description: 'Disfruta de la tranquilidad y el sol.'
+    description: 'Disfruta de la tranquilidad y el sol.',
+    status:"disponible"
   }
 ];
 
@@ -40,6 +42,10 @@ function CatDetail() {
 
   return (
     <div className="cat-detail-container">
+      <SideMenu userRole="admin" menuItems={[
+    { text: 'Donaciones', url: '/donations', roles: ['admin', 'user'] },
+    { text: 'Lista de gatos', url: '/cats', roles: ['admin'] }
+  ]} />
       <div className="cat-detail">
         <h2>{cat.name}</h2>
         <div className="cat-photo-wrapper">

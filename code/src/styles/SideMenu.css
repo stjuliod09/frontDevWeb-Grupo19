@@ -9,6 +9,7 @@
     padding: 20px;
     padding-top: 50px;
     box-sizing: border-box;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para el menú */
   }
   
   .side-menu ul {
@@ -22,9 +23,11 @@
   }
   
   .side-menu li a {
+    display: inline-block; /* Área clicable más amplia */
     text-decoration: none;
     color: #ff6f61;
     font-weight: bold;
+    padding: 8px 0;
     transition: color 0.3s ease;
   }
   

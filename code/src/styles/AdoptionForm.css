@@ -1,11 +1,18 @@
-/* Contenedor que centra el formulario horizontalmente y agrega algo de espacio vertical */
+/* Contenedor principal que usa Flexbox para el menú lateral y el contenido */
+.page-container {
+  display: flex;
+}
+
+/* Contenedor de la vista de adopción (descarta el ancho del menú lateral) */
 .adoption-form-page {
+  width: calc(100vw - 200px);
+  margin-left: 200px; /* Espacio para el menú lateral */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   padding: 40px 0;
   background-color: #fff9f2;
+  box-sizing: border-box;
 }
 
 /* Tarjeta del formulario más pequeña */
