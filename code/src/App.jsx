@@ -8,6 +8,8 @@ import AdoptionForm from './components/AdoptionForm';
 import AdoptionRequests from './components/AdoptionRequests';
 import Donations from './components/Donations';
 
+localStorage.setItem('userRole', "admin");
+
 function App() {
   return (
     <Router>

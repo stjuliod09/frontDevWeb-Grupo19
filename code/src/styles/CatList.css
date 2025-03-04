@@ -77,6 +77,10 @@
     margin: 0 0 10px 0;
     color: #555;
   }
+  .cat-info .cat-link {
+    display: inline-block;
+    margin-bottom: 8px; /* Añade espacio entre los enlaces */
+  }
   
   .cat-info a {
     text-decoration: none;

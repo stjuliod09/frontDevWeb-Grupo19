@@ -38,6 +38,19 @@
   text-align: center;
 }
 
+.cat-detail-buttons {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  align-items: center; /* Asegura que estén alineados verticalmente */
+  gap: 10px; /* Espacio entre botones */
+  margin-top: 20px; /* Espacio superior */
+  flex-wrap: wrap; /* Evita que se expandan demasiado */
+  width: fit-content; /* Limita el ancho al contenido */
+  margin-left: auto; /* Centra el contenedor de los botones */
+  margin-right: auto; /* Centra el contenedor de los botones */
+}
+
+
 /* Foto del gato con sombra sutil */
 .cat-photo-detail {
   width: 220px;

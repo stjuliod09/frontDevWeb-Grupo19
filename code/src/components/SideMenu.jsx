@@ -4,32 +4,33 @@ import '../styles/SideMenu.css';
 
 /**
  * Ejemplo de uso:
- * const menuItems = [
- *   { text: 'Donaciones', url: '/donations', roles: ['admin', 'user'] },
- *   { text: 'Solicitudes de Adopción', url: '/adoption-requests', roles: ['admin'] },
- *   { text: 'Perfil', url: '/profile', roles: ['user'] }
- * ];
- *
- * <SideMenu userRole="admin" menuItems={menuItems} />
+ * <SideMenu userRole="admin" />
  */
 
-function SideMenu({ userRole, menuItems = [] }) {
+const menuItemsAdmin = [
+  { text: 'Solicitudes de Adopción', url: '/adoption-requests' },
+];
+
+const menuItemsUser = [
+  // { text: 'Perfil', url: '/profile' },
+  { text: 'Lista de gatos', url: '/cats' },
+  { text: 'Solicitar un michi', url: '/adoption' },
+  { text: 'Donaciones', url: '/donations' },
+];
+
+function SideMenu() {
+  const userRole=localStorage.getItem('userRole')
+  // Determinar los ítems del menú según el rol del usuario
+  const menuItems = userRole === 'admin' ? [...menuItemsUser, ...menuItemsAdmin] : menuItemsUser;
+
   return (
     <div className="side-menu">
       <ul>
-        {menuItems.map((item, index) => {
-
-          const hasAccess =
-            !item.roles || item.roles.includes(userRole);
-
-          if (!hasAccess) return null;
-
-          return (
-            <li key={index}>
-              <Link to={item.url}>{item.text}</Link>
-            </li>
-          );
-        })}
+        {menuItems.map((item, index) => (
+          <li key={index}>
+            <Link to={item.url}>{item.text}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

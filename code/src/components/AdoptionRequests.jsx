@@ -37,14 +37,7 @@ function AdoptionRequests() {
 
   return (
     <div className="page-container">
-      <SideMenu
-        userRole="user"
-        menuItems={[
-          { text: "Donaciones", url: "/donations", roles: ["admin", "user"] },
-          { text: "Lista de gatos", url: "/cats", roles: ["admin", "user"] },
-          { text: "Solicitar un michi", url: "/adoption", roles: ["user"] },
-        ]}
-      />
+      <SideMenu/>
       <div className="adoption-requests-page">
         <div className="adoption-requests-container">
           <h2>Solicitudes de Adopción</h2>

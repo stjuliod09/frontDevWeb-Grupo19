@@ -25,9 +25,12 @@ const cats = [
   }
 ];
 
+
 function CatDetail() {
   const { id } = useParams();
   const cat = cats.find((c) => c.id === Number(id));
+
+  
 
   if (!cat) {
     return (
@@ -42,10 +45,7 @@ function CatDetail() {
 
   return (
     <div className="cat-detail-container">
-      <SideMenu userRole="admin" menuItems={[
-    { text: 'Donaciones', url: '/donations', roles: ['admin', 'user'] },
-    { text: 'Lista de gatos', url: '/cats', roles: ['admin'] }
-  ]} />
+      <SideMenu />
       <div className="cat-detail">
         <h2>{cat.name}</h2>
         <div className="cat-photo-wrapper">
@@ -67,7 +67,11 @@ function CatDetail() {
         <p>
           <strong>Descripción:</strong> {cat.description}
         </p>
-        <Link to="/cats">Volver a la lista</Link>
+        <div className="cat-detail-buttons">
+  <Link to="/cats">Volver a la lista</Link>
+  <Link to="/cats">¡Adoptar!</Link>
+</div>
+
       </div>
     </div>
   );

@@ -15,15 +15,9 @@ function AdoptionForm() {
     console.log('Solicitud de adopción:', { fullName, email, phone, catName, message });
   };
 
-  // Ejemplo de items para el menú lateral (puedes ajustarlos según necesites)
-  const menuItems = [
-    { text: 'Donaciones', url: '/donations', roles: ['user', 'admin'] },
-    { text: 'Solicitudes de Adopción', url: '/adoption-requests', roles: ['admin'] },
-  ];
-
   return (
     <div className="page-container">
-      <SideMenu userRole="user" menuItems={menuItems} />
+      <SideMenu />
       <div className="adoption-form-page">
         <div className="adoption-form-container">
           <h2>Solicitud de Adopción</h2>
