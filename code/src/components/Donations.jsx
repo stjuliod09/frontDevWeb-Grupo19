@@ -8,25 +8,15 @@ function Donations() {
     { id: 2, bank: 'Banco de Prueba', account: '987654321', type: 'Cuenta Corriente' }
   ];
 
-  const digitalOptions = [
-    { id: 1, name: 'Nequi', details: 'Transfiere desde la app Nequi' },
-    { id: 2, name: 'Daviplata', details: 'Transfiere desde la app Daviplata' }
-  ];
-
   const directContacts = [
     { id: 1, type: 'WhatsApp', contact: '+57 300 1234567' },
     { id: 2, type: 'Email', contact: 'ayuda@example.com' }
   ];
 
-  // Definición dinámica de items para el menú lateral
-  const menuItems = [
-    { text: "Solicitar un michi", url: "/adoption", roles: ["user"] },
-    { text: 'Solicitudes de Adopción', url: '/adoption-requests', roles: ['admin'] },
-  ];
 
   return (
     <div className="page-container">
-      <SideMenu userRole="user" menuItems={menuItems} />
+      <SideMenu  />
       <div className="donations-page">
         <div className="donations-container">
           <h2>Canales de Donación</h2>
@@ -42,19 +32,7 @@ function Donations() {
               ))}
             </ul>
           </section>
-  
-          <section className="donation-section">
-            <h3>Donaciones Digitales</h3>
-            <ul className="donation-list">
-              {digitalOptions.map((option) => (
-                <li key={option.id} className="donation-item">
-                  <p><strong>{option.name}</strong></p>
-                  <p>{option.details}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-  
+
           <section className="donation-section">
             <h3>Contacto para Apoyo Directo</h3>
             <ul className="donation-list">

@@ -9,6 +9,8 @@ import '../styles/SideMenu.css';
 
 const menuItemsAdmin = [
   { text: 'Solicitudes de Adopción', url: '/adoption-requests' },
+  { text: 'Registrar gato', url: '/cats' },
+
 ];
 
 const menuItemsUser = [
@@ -16,6 +18,7 @@ const menuItemsUser = [
   { text: 'Lista de gatos', url: '/cats' },
   { text: 'Solicitar un michi', url: '/adoption' },
   { text: 'Donaciones', url: '/donations' },
+  
 ];
 
 function SideMenu() {
