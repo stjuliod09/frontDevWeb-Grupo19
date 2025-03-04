@@ -4,17 +4,18 @@
 }
 
 .cat-list-container {
-    width: 100vw;
-    min-height: 100vh;
-    background-color: #fff9f2; /* Mantiene la paleta de colores cálida */
-    display: flex;
-    flex: 1;
-    padding-top: 20px;
-    margin-left: 40px; 
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-  }
+  width: calc(100vw - 40px); /* Resta el margen lateral para evitar overflow */
+  height: 100vh;             /* Usa height en lugar de min-height para ocupar la altura exacta */
+  background-color: #fff9f2;
+  display: flex;
+  flex: 1;
+  padding-top: 20px;
+  margin-left: 40px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
   
   /* Contenedor de la lista de gatos */
   .cat-list {
@@ -30,7 +31,8 @@
   .cat-list h2 {
     text-align: center;
     color: #ff6f61;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
   
   /* Ajuste de la lista para 2 columnas usando Grid */
@@ -48,7 +50,7 @@
   .cat-item {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #eee;
     border-radius: 8px;
     transition: background-color 0.3s ease;
@@ -61,8 +63,8 @@
   }
   
   .cat-photo {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 20px;

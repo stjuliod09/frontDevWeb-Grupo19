@@ -21,7 +21,7 @@ const cats = [
     health: 'Excelente',
     personality: 'Tranquilo y relajado',
     description: 'Disfruta de la tranquilidad y el sol.',
-    status:"disponible"
+    status: 'disponible'
   }
 ];
 
@@ -34,7 +34,7 @@ function CatDetail() {
 
   if (!cat) {
     return (
-      <div className="cat-detail-container">
+      <div className="cat-detail-container-not-found">
         <div className="cat-detail">
           <h2>Gato no encontrado</h2>
           <Link to="/cats">Volver a la lista</Link>

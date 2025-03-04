@@ -1,40 +1,41 @@
-/* Ajusta el contenedor para dejar espacio al menú lateral (200px) */
+/* Ajuste del contenedor para incluir el menú lateral */
+.page-container {
+  display: flex;
+}
+
+/* Contenedor del detalle del gato */
 .cat-detail-container {
-  width: calc(100vw - 200px); /* Se resta el ancho del menú lateral */
+  width: calc(100vw - 200px); /* Ajusta el ancho considerando el menú lateral */
   min-height: 100vh;
-  background-color: #fff9f2; /* Mantiene la paleta de colores cálida */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  margin-left: 200px; /* Evita que el contenido se superponga con el menú */
+  background-color: #fff9f2;
+  margin-left: 200px; /* Espacio para el menú lateral */
 }
 
-/* Contenedor principal del detalle */
+.cat-detail-container-not-found {
+  width: 100vw ; /* Ajusta el ancho considerando el menú lateral */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff9f2;
+}
+
+/* Tarjeta del detalle del gato */
 .cat-detail {
-  width: 70%;
-  max-height: 70%;
-  max-width: 1200px;
-  padding-left: 30px;
-  padding-bottom: 30px;
+  width: 90%;
+  max-width: 800px;
+  padding: 30px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #fff; /* Fondo blanco para contrastar con #fff9f2 */
+  background-color: #fff9f2;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Mantiene el título y la foto centrados */
-}
-
-/* Título - más grande para destacar */
-.cat-detail h2 {
-  font-size: 1.8em;
-  color: #ff6f61;
-  margin-bottom: 20px;
-}
-
-/* Envoltura de la foto */
-.cat-photo-wrapper {
-  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -57,30 +58,58 @@
   height: 220px;
   border-radius: 10px;
   object-fit: cover;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar la imagen */
 }
 
-/* Información del gato */
-.cat-detail p {
-  margin: 10px 0;
-  color: #555;
-  font-size: 1em;
-  text-align: left; /* Para una lectura más cómoda */
-  line-height: 1.4; /* Mejora la legibilidad */
-}
-
-/* Botón / Link para volver */
-.cat-detail a {
+/* Botones */
+.back-button, .edit-button {
   display: inline-block;
-  margin: 30px auto 0; /* Espacio extra arriba para separarlo del texto */
+  margin-top: 20px;
   text-decoration: none;
-  background-color: #ff6f61;
-  color: #fff;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  font-size: 1em;
+  cursor: pointer;
 }
 
-.cat-detail a:hover {
+/* Botón de editar solo para admin */
+.edit-button {
+  background-color: #007bff;
+  color: white;
+  margin-right: 10px;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Botón de volver */
+.back-button {
+  background-color: #ff6f61;
+  color: white;
+}
+
+.back-button:hover {
   background-color: #e65c50;
+}
+
+/* Botón de Postear un Michi */
+.post-cat-button {
+  display: inline-block;
+  text-align: center;
+  background-color: #ff6f61; /* Color llamativo */
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin-left: 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.post-cat-button:hover {
+  background-color: #e65c50;
+  transform: scale(1.05);
 }

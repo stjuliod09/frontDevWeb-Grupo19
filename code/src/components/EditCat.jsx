@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/EditCat.css';
+import SideMenu from './SideMenu';
 
 function EditCat() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Datos quemados de ejemplo (los mismos que en CatDetail)
+  // Datos de ejemplo
   const cats = [
     {
       id: 1,
@@ -42,78 +43,79 @@ function EditCat() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí enviarías la información actualizada a tu backend o actualizarías el estado global
     console.log('Información actualizada:', { name, photo, age, health, personality, description });
-    // Opcional: redirige a la vista de detalle del gato
     navigate(`/cats/${cat.id}`);
   };
 
   return (
-    <div className="edit-cat-page">
-      <div className="edit-cat-container">
-        <h2>Editar Información de {cat.name}</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Nombre:</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="photo">URL de la foto:</label>
-            <input
-              type="text"
-              id="photo"
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="age">Edad:</label>
-            <input
-              type="text"
-              id="age"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="health">Condición de salud:</label>
-            <input
-              type="text"
-              id="health"
-              value={health}
-              onChange={(e) => setHealth(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="personality">Personalidad:</label>
-            <input
-              type="text"
-              id="personality"
-              value={personality}
-              onChange={(e) => setPersonality(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="description">Descripción:</label>
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit">Guardar Cambios</button>
-        </form>
+    <div className="page-container">
+      <SideMenu />
+      <div className="edit-cat-page">
+        <div className="edit-cat-container">
+          <h2>Editar Información de {cat.name}</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Nombre:</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="photo">URL de la foto:</label>
+              <input
+                type="text"
+                id="photo"
+                value={photo}
+                onChange={(e) => setPhoto(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="age">Edad:</label>
+              <input
+                type="text"
+                id="age"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="health">Condición de salud:</label>
+              <input
+                type="text"
+                id="health"
+                value={health}
+                onChange={(e) => setHealth(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="personality">Personalidad:</label>
+              <input
+                type="text"
+                id="personality"
+                value={personality}
+                onChange={(e) => setPersonality(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Descripción:</label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Guardar Cambios</button>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import EditCat from './components/EditCat';
 import AdoptionForm from './components/AdoptionForm';
 import AdoptionRequests from './components/AdoptionRequests';
 import Donations from './components/Donations';
+import PostCat from './components/PostCat';
 
 localStorage.setItem('userRole', "user");
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/adoption" element={<AdoptionForm />} />
         <Route path="/adoption-requests" element={<AdoptionRequests />} />
         <Route path="/donations" element={<Donations />} />
+        <Route path="/cats/create" element={<PostCat />} />
       </Routes>
     </Router>
   );

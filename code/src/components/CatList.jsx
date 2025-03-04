@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/CatList.css";
 import SideMenu from "./SideMenu";
 
+// Datos de ejemplo
 const cats = [
   {
     id: 1,
@@ -92,6 +93,12 @@ function CatList() {
             </li>
           ))}
           </ul>
+          {/* Botón solo visible para administradores */}
+          {userRole === "admin" && (
+            <Link to="/cats/create" className="post-cat-button">
+              Postear un michi
+            </Link>
+          )}
         </div>
       </div>
     </div>
