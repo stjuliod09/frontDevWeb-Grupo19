@@ -4,19 +4,18 @@ import '../styles/Donations.css';
 
 function Donations() {
   const bankAccounts = [
-    { id: 1, bank: 'Banco de Ejemplo', account: '123456789', type: 'Cuenta de Ahorros' },
-    { id: 2, bank: 'Banco de Prueba', account: '987654321', type: 'Cuenta Corriente' }
+    { id: 1, bank: 'Banco Nacional', account: '0123456789', type: 'Cuenta de Ahorros' },
+    { id: 2, bank: 'Banco del Pueblo', account: '987654321', type: 'Cuenta Corriente' }
   ];
 
   const directContacts = [
-    { id: 1, type: 'WhatsApp', contact: '+57 300 1234567' },
-    { id: 2, type: 'Email', contact: 'ayuda@example.com' }
+    { id: 1, type: 'WhatsApp', contact: '+57 311 222 3344' },
+    { id: 2, type: 'Email', contact: 'ayuda@michirescue.org' }
   ];
-
 
   return (
     <div className="page-container">
-      <SideMenu  />
+      <SideMenu />
       <div className="donations-page">
         <div className="donations-container">
           <h2>Canales de Donación</h2>
