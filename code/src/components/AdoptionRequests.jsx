@@ -1,43 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SideMenu from "./SideMenu"; // Asegúrate de que SideMenu esté en esta ruta
+import SideMenu from "./SideMenu"; 
 import "../styles/AdoptionRequests.css";
-
-const requests = [
-  {
-    id: 1,
-    fullName: "Juan Pérez",
-    email: "juan@example.com",
-    phone: "123456789",
-    catName: "Mittens",
-    message:
-      "Quiero darle un hogar a este gatito porque me han dicho que es muy cariñoso.",
-  },
-  {
-    id: 2,
-    fullName: "María Gómez",
-    email: "maria@example.com",
-    phone: "987654321",
-    catName: "Whiskers",
-    message:
-      "Siempre he querido adoptar un gato y este me enamoró con su ternura.",
-  },
-];
+import adoptionService from "../services/Adoption";
 
 function AdoptionRequests() {
-  const handleAccept = (id) => {
-    console.log(`Solicitud ${id} aceptada`);
-    // Lógica para aceptar la solicitud
+  const [requests, setRequests] = useState([]);
+
+  // Función para obtener las solicitudes
+  const fetchAdoptions = async () => {
+    const response = await adoptionService.getAll();
+    if (response && response.status === 200) {
+      setRequests(response.data);
+    }
   };
 
-  const handleReject = (id) => {
-    console.log(`Solicitud ${id} rechazada`);
-    // Lógica para rechazar la solicitud
+  // Cargar solicitudes al montar el componente
+  useEffect(() => {
+    fetchAdoptions();
+  }, []);
+
+  // Función para aceptar o rechazar una solicitud
+  const handleAction = async (id, status) => {
+    try {
+      const body=JSON.stringify(status)
+      const response = await adoptionService.updateAdoption(id, body);
+      if (response && response.status === 200) {
+        fetchAdoptions();
+      }
+    } catch (error) {
+      console.error("Error al actualizar la solicitud:", error);
+    }
   };
 
   return (
     <div className="page-container">
-      <SideMenu/>
+      <SideMenu />
       <div className="adoption-requests-page">
         <div className="adoption-requests-container">
           <h2>Solicitudes de Adopción</h2>
@@ -48,28 +46,20 @@ function AdoptionRequests() {
               {requests.map((request) => (
                 <li key={request.id} className="request-item">
                   <h3>{request.fullName}</h3>
-                  <p>
-                    <strong>Correo:</strong> {request.email}
-                  </p>
-                  <p>
-                    <strong>Teléfono:</strong> {request.phone}
-                  </p>
-                  <p>
-                    <strong>Gato:</strong> {request.catName}
-                  </p>
-                  <p>
-                    <strong>Mensaje:</strong> {request.message}
-                  </p>
+                  <p><strong>Correo:</strong> {request.email}</p>
+                  <p><strong>Teléfono:</strong> {request.phone}</p>
+                  <p><strong>Gato:</strong> {request.catName}</p>
+                  <p><strong>Mensaje:</strong> {request.message}</p>
                   <div className="request-buttons">
                     <button
                       className="accept-btn"
-                      onClick={() => handleAccept(request.id)}
+                      onClick={() => handleAction(request.id, {status:"Aceptado"})}
                     >
                       Aceptar
                     </button>
                     <button
                       className="reject-btn"
-                      onClick={() => handleReject(request.id)}
+                      onClick={() => handleAction(request.id, {status:"Rechazado"})}
                     >
                       Rechazar
                     </button>
