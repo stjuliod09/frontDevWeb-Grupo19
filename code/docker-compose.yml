@@ -1,0 +1,30 @@
+version: '3.9'
+
+services: 
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: CatLoversUnalFront
+
+    image: node-mysql-app
+    ports:
+      - "$PORT_APP:$PORT_APP"
+    networks:
+      - appnetwork
+    links:
+      - mysqldb2:mysqldb2
+    depends_on:
+      - mysqldb2
+    command: sh -c "/wait && node index.js"
+    volumes:
+      - ./coverage:/code/coverage:rw
+    environment:
+      - WAIT_HOSTS=mysqldb2:$DB_PORT
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+    restart: on-failure
+networks:
+  appnetwork:
+    driver: bridge

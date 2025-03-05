@@ -51,9 +51,9 @@ const AdoptionService = {
   },
   updateAdoption: async function (id, raw) {
     try {
-      const url = APIURL2 + `/cats/${id}/status`;
+      const url = APIURL2 + `/cats/cats/${id}/status`;
       const requestOptions = {
-        method: "PUT",
+        method: "PATCH",
         body: raw,
         headers: cabezeraConToken,
         redirect: "follow",
