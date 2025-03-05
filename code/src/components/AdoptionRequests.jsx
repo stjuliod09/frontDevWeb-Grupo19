@@ -53,7 +53,7 @@ function AdoptionRequests() {
                   <div className="request-buttons">
                     <button
                       className="accept-btn"
-                      onClick={() => handleAction(request.id, {status:"Aceptado"})}
+                      onClick={() => handleAction(request.id, {status:"Adoptado"})}
                     >
                       Aceptar
                     </button>
