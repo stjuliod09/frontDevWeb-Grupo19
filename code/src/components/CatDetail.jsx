@@ -54,7 +54,11 @@ function CatDetail() {
         <div className="cat-photo-wrapper">
           {/* Se muestra la primera imagen del array 'images', si existe, o se usa una foto por defecto */}
           <img
-            src={cat.images && cat.images.length > 0 ? cat.images[0] : cat.profilePhoto}
+            src={
+              cat.images && cat.images.length > 0
+                ? cat.images[[cat.images.length - 1]]
+                : cat.profilePhoto
+            }
             alt={cat.name}
             className="cat-photo-detail"
           />
@@ -74,6 +78,11 @@ function CatDetail() {
         <div className="cat-detail-buttons">
           <Link to="/cats">Volver a la lista</Link>
           <Link to="/adoption">¡Adoptar!</Link>
+          {localStorage.getItem("userRole") === "admin" && (
+            <Link to={`/edit-cat/${cat.id}`} className="edit-link">
+              Editar
+            </Link>
+          )} 
         </div>
       </div>
     </div>

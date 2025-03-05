@@ -1,58 +1,118 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/EditCat.css';
 import SideMenu from './SideMenu';
+import CatService from '../services/Cats';
 
 function EditCat() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Datos de ejemplo
-  const cats = [
-    {
-      id: 1,
-      name: 'Mittens',
-      photo: 'https://source.unsplash.com/featured/?cat',
-      age: '2 años',
-      health: 'Buena',
-      personality: 'Juguetón y cariñoso',
-      description: 'Le encanta jugar y es muy amigable.'
-    },
-    {
-      id: 2,
-      name: 'Whiskers',
-      photo: 'https://source.unsplash.com/featured/?kitten',
-      age: '3 años',
-      health: 'Excelente',
-      personality: 'Tranquilo y relajado',
-      description: 'Disfruta de la tranquilidad y el sol.'
-    }
-  ];
+  // Estado para controlar la carga y errores
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const cat = cats.find(c => c.id === Number(id));
-  if (!cat) {
-    return <div>Gato no encontrado</div>;
+  // Estados para la información del gato
+  const [originalName, setOriginalName] = useState(''); // ← Nuevo estado para el nombre original
+  const [name, setName] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [age, setAge] = useState('');
+  const [health, setHealth] = useState('');
+  const [personality, setPersonality] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    async function fetchCat() {
+      try {
+        const response = await CatService.getId(id);
+        if (response && response.status === 200) {
+          const catData = response.data;
+
+          // Guardamos el nombre original en un estado separado
+          setOriginalName(catData.name || '');
+
+          // El resto de estados para edición
+          setName(catData.name || '');
+          setPhoto(catData.photo || (catData.images && catData.images[[catData.images.length - 1]]) || '');
+          setAge(catData.age || '');
+          setHealth(catData.health || '');
+          setPersonality(catData.personality || '');
+          setDescription(catData.description || '');
+        } else {
+          setError('Error al cargar la información del gato.');
+        }
+      } catch (e) {
+        setError('Error al cargar la información del gato.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCat();
+  }, [id]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Datos para actualizar la info principal
+    const updatedInfo = {
+      name,
+      age,
+      health,
+      personality,
+      description,
+    };
+
+    try {
+      // Actualizar la información principal
+      console.log('Datos a enviar:', updatedInfo);
+      const updateResponse = await CatService.update(id, JSON.stringify(updatedInfo));
+      console.log('Respuesta update:', updateResponse);
+
+      // Actualizar la imagen si es necesario
+      const imgResponse = await CatService.updateImg(id, JSON.stringify({ urlImg: photo }));
+      console.log('Respuesta updateImg:', imgResponse);
+
+      // Redirige al detalle del gato
+      navigate(`/cats/${id}`);
+    } catch (err) {
+      console.error('Error al actualizar el gato:', err);
+      setError('Error al actualizar el gato.');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="page-container">
+        <SideMenu />
+        <div className="edit-cat-page">
+          <div className="edit-cat-container">
+            <h2>Cargando...</h2>
+          </div>
+        </div>
+      </div>
+    );
   }
 
-  const [name, setName] = useState(cat.name);
-  const [photo, setPhoto] = useState(cat.photo);
-  const [age, setAge] = useState(cat.age);
-  const [health, setHealth] = useState(cat.health);
-  const [personality, setPersonality] = useState(cat.personality);
-  const [description, setDescription] = useState(cat.description);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Información actualizada:', { name, photo, age, health, personality, description });
-    navigate(`/cats/${cat.id}`);
-  };
+  if (error) {
+    return (
+      <div className="page-container">
+        <SideMenu />
+        <div className="edit-cat-page">
+          <div className="edit-cat-container">
+            <h2>{error}</h2>
+            <button onClick={() => navigate('/cats')}>Volver</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page-container">
       <SideMenu />
       <div className="edit-cat-page">
         <div className="edit-cat-container">
-          <h2>Editar Información de {cat.name}</h2>
+          {/* Usamos originalName para el título, así no cambia cuando se edita el campo Nombre */}
+          <h2>Editar Información de {originalName}</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Nombre:</label>

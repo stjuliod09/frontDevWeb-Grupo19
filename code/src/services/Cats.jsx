@@ -59,6 +59,42 @@ const CatService = {
       return null;
     }
   },
+  update: async function (id, raw) {
+    try {
+      const url = APIURL + `/cats/${id}`;
+      console.log(url)
+      const requestOptions = {
+        method: "PUT",
+        body: raw,
+        headers: cabezeraSinToken,
+        redirect: "follow",
+      };
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      return data;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  },
+  updateImg: async function (id, raw) {
+    try {
+      const url = APIURL + `/cats/${id}/images`;
+      console.log(url)
+      const requestOptions = {
+        method: "POST",
+        body: raw,
+        headers: cabezeraSinToken,
+        redirect: "follow",
+      };
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      return data;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  },
 };
 
 export default CatService;

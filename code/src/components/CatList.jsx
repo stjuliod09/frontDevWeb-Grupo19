@@ -33,7 +33,7 @@ function CatList() {
               <li key={cat.id} className="cat-item">
 
                 <img
-                  src={cat.images[0]}
+                  src={cat.images[cat.images.length - 1]}
                   alt={cat.name}
                   className="cat-photo"
                 />
