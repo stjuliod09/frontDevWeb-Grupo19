@@ -20,9 +20,7 @@ function Login() {
     if (response && response.status === 200) {
       localStorage.setItem('userRole', 'admin');
       localStorage.setItem('tokenAdmin',response.jwtToken);
-
       navigate('/'); // Redirige a la página principal
-
     } else {
       setErrorModal(true); 
     }

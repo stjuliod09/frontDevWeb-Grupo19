@@ -13,6 +13,8 @@ function AdoptionForm() {
   const [cats, setCats] = useState([]);
   const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [messageError, setMessageError] = useState("Hubo un problema al enviar tu solicitud. Por favor, intenta nuevamente.");
+
 
   useEffect(() => {
     async function fetchCats() {
@@ -39,6 +41,9 @@ function AdoptionForm() {
     try {
       const rawData = JSON.stringify(data);
       const response = await AdoptionService.create(rawData);
+      console.log(response)
+      setMessageError(response?.error?.message)
+
       console.log("Respuesta de la solicitud:", response);
       if (response.status === 201) {
         setSuccessModalOpen(true);
@@ -153,7 +158,7 @@ function AdoptionForm() {
         <div className="modal">
           <div className="modal-content">
             <h3>Error</h3>
-            <p>Hubo un problema al enviar tu solicitud. Por favor, intenta nuevamente.</p>
+            <p>{messageError}</p>
             <button onClick={closeErrorModal}>Cerrar</button>
           </div>
         </div>

@@ -12,7 +12,6 @@ const cabezeraConToken = {
 };
 const Url = import.meta.env.VITE_URL_BACK;
 const APIURL = ` ${Url}/cats`;
-console.log(APIURL);
 const CatService = {
   getAll: async function () {
     try {

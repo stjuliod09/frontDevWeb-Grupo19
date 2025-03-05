@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 const menuItemsAdmin = [
   { text: 'Solicitudes de Adopción', url: '/adoption-requests' },
-  { text: 'Registrar gato', url: '/' },
 
 ];
 
@@ -33,7 +32,7 @@ function SideMenu() {
   };
   const handleAdminLogout = () => {
     localStorage.clear();
-    navigate('/'); // Redirige a la página del administrador
+    window.location.reload();
   };
 
   return (

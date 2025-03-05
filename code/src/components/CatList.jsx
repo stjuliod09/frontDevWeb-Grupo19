@@ -42,6 +42,7 @@ function CatList() {
                   <Link to={`/cats/${cat.id}`} className="edit-link">
                     Ver Detalles
                   </Link>
+                  <br />
                   {userRole === "admin" && (
                     <Link to={`/edit-cat/${cat.id}`} className="edit-link">
                       Editar
