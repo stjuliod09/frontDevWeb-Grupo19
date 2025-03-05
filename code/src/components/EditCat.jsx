@@ -99,7 +99,7 @@ function EditCat() {
         <div className="edit-cat-page">
           <div className="edit-cat-container">
             <h2>{error}</h2>
-            <button onClick={() => navigate('/cats')}>Volver</button>
+            <button onClick={() => navigate('/')}>Volver</button>
           </div>
         </div>
       </div>

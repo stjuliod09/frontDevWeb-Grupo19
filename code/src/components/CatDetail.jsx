@@ -40,7 +40,7 @@ function CatDetail() {
         <SideMenu />
         <div className="cat-detail">
           <h2>Gato no encontrado</h2>
-          <Link to="/cats">Volver a la lista</Link>
+          <Link to="/">Volver a la lista</Link>
         </div>
       </div>
     );
@@ -76,7 +76,7 @@ function CatDetail() {
           <strong>Descripción:</strong> {cat.description}
         </p>
         <div className="cat-detail-buttons">
-          <Link to="/cats">Volver a la lista</Link>
+          <Link to="/">Volver a la lista</Link>
           <Link to="/adoption">¡Adoptar!</Link>
           {localStorage.getItem("userRole") === "admin" && (
             <Link to={`/edit-cat/${cat.id}`} className="edit-link">

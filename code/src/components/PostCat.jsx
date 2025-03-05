@@ -56,7 +56,7 @@ function PostCat() {
 
   const closeSuccessModal = () => {
     setSuccessModalOpen(false);
-    navigate("/cats"); // Redirige a la lista de gatos tras cerrar el modal
+    navigate("/"); // Redirige a la lista de gatos tras cerrar el modal
   };
 
   const closeErrorModal = () => {

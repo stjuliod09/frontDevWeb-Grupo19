@@ -9,14 +9,12 @@ import AdoptionRequests from './components/AdoptionRequests';
 import Donations from './components/Donations';
 import PostCat from './components/PostCat';
 
-localStorage.setItem('userRole', "user");
-
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/cats" element={<CatList />} />
+        <Route path="/login-admin" element={<Login />} />
+        <Route path="/" element={<CatList />} />
         <Route path="/cats/:id" element={<CatDetail />} />
         <Route path="/edit-cat/:id" element={<EditCat />} />
         <Route path="/adoption" element={<AdoptionForm />} />

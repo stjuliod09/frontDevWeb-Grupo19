@@ -1,8 +1,14 @@
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
+const token=localStorage.getItem('userRole')
 const cabezeraSinToken = {
   "Content-Type": "application/json",
+};
+
+const cabezeraConToken = {
+  "Content-Type": "application/json",
+  "authorization": `Bearer ${token}`,
 };
 const Url = import.meta.env.VITE_URL_BACK;
 const APIURL = ` ${Url}/cats`;
@@ -30,7 +36,7 @@ const CatService = {
       const url = APIURL + "/cats";
       const requestOptions = {
         method: "POST",
-        headers: cabezeraSinToken,
+        headers: cabezeraConToken,
         body: raw,
         redirect: "follow",
       };
@@ -66,7 +72,7 @@ const CatService = {
       const requestOptions = {
         method: "PUT",
         body: raw,
-        headers: cabezeraSinToken,
+        headers: cabezeraConToken,
         redirect: "follow",
       };
       const response = await fetch(url, requestOptions);
@@ -84,7 +90,7 @@ const CatService = {
       const requestOptions = {
         method: "POST",
         body: raw,
-        headers: cabezeraSinToken,
+        headers: cabezeraConToken,
         redirect: "follow",
       };
       const response = await fetch(url, requestOptions);
