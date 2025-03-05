@@ -21,6 +21,10 @@ function CatList() {
     fetchCats();
   }, []);
 
+  // Filtrar gatos según el rol
+  const filteredCats =
+    userRole === "admin" ? cats : cats.filter((cat) => cat.status === "Disponible");
+
   return (
     <div className="page-container">
       <SideMenu />
@@ -29,9 +33,8 @@ function CatList() {
           <h2>Gatos Para adoptar</h2>
           {error && <p className="error">{error}</p>}
           <ul>
-            {cats.map((cat) => (
+            {filteredCats.map((cat) => (
               <li key={cat.id} className="cat-item">
-
                 <img
                   src={cat.images[cat.images.length - 1]}
                   alt={cat.name}
@@ -39,6 +42,9 @@ function CatList() {
                 />
                 <div className="cat-info">
                   <h3>{cat.name}</h3>
+                  <p>
+                    <strong>Status:</strong> {cat.status}
+                  </p>
                   <Link to={`/cats/${cat.id}`} className="edit-link">
                     Ver Detalles
                   </Link>
