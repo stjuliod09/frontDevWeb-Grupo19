@@ -1,75 +1,73 @@
 /* Contenedor principal con el menú lateral */
 .page-container {
     display: flex;
-}
-
-/* Página de publicación de gatos: ocupa el espacio restante y tiene 100vh */
-.post-cat-page {
+  }
+  
+  /* Página de publicación de gatos: ocupa el espacio restante y tiene 100vh */
+  .post-cat-page {
     width: calc(100vw - 200px);
-    height: 100vh; /* Usamos 100vh para que ocupe toda la altura */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fff9f2;
-    margin-left: 200px; /* Ancho del menú lateral */
+    margin-left: 200px;
     padding: 20px;
     box-sizing: border-box;
-}
-
-/* Tarjeta del formulario: ajustada a 90vh */
-.post-cat-container {
+  }
+  
+  /* Tarjeta del formulario: ajustada a 90vh */
+  .post-cat-container {
     width: 90%;
     max-width: 500px;
-    height: 90vh; /* La tarjeta ocupará el 90% de la altura del viewport */
-    padding: 0px 20px;
+    height: 90vh;
+    padding: 0 20px;
+    padding-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #fff9f2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
-    /* Flexbox para distribuir el contenido verticalmente */
     display: flex;
     flex-direction: column;
     text-align: center;
-}
-
-/* El formulario se extiende a lo largo de toda la tarjeta */
-.post-cat-container form {
+  }
+  
+  /* El formulario se extiende a lo largo de toda la tarjeta */
+  .post-cat-container form {
     display: flex;
     flex-direction: column;
     max-height: 90%;
-    justify-content: space-between; /* Opcional: coloca el botón al final y deja espacio entre campos */
-}
-
-/* Estilos para el título y los grupos del formulario */
-.post-cat-container h2 {
+    justify-content: space-between;
+  }
+  
+  /* Estilos para el título y los campos */
+  .post-cat-container h2 {
     color: #ff6f61;
     margin-bottom: 20px;
-}
-
-/* Agrupación de campos */
-.form-group {
+  }
+  
+  .form-group {
     margin-bottom: 10px;
     text-align: left;
-}
-
-.form-group label {
+  }
+  
+  .form-group label {
     display: block;
     margin-bottom: 2px;
     font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea {
+  }
+  
+  .form-group input,
+  .form-group textarea {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-/* Botón de publicación */
-button {
+  }
+  
+  /* Botón de publicación */
+  button {
     width: 100%;
     padding: 12px;
     background-color: #ff6f61;
@@ -80,8 +78,53 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 10px;
-}
-
-button:hover {
+  }
+  
+  button:hover {
     background-color: #e65c50;
-}
+  }
+  
+  /* Estilos para los modales */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+  
+  .modal-content h3 {
+    margin-top: 0;
+    color: #ff6f61;
+  }
+  
+  .modal-content button {
+    margin-top: 15px;
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-content button:hover {
+    background-color: #e65c50;
+  }
+  

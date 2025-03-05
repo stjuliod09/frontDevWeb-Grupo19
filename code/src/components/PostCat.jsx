@@ -1,42 +1,72 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/PostCat.css';
-import SideMenu from './SideMenu';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/PostCat.css";
+import SideMenu from "./SideMenu";
+import CatService from "../services/Cats";
 
 function PostCat() {
   const navigate = useNavigate();
 
   // Estados para los datos del nuevo gato
-  const [name, setName] = useState('');
-  const [photo, setPhoto] = useState('');
-  const [age, setAge] = useState('');
-  const [health, setHealth] = useState('');
-  const [personality, setPersonality] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [age, setAge] = useState("");
+  const [health, setHealth] = useState("");
+  const [personality, setPersonality] = useState("");
+  const [description, setDescription] = useState("");
 
-  const handleSubmit = (e) => {
+  // Estados para controlar los modales
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newCat = { name, photo, age, health, personality, description };
-    
-    console.log('Nuevo gato publicado:', newCat);
-    
-    // Aquí enviarías la información al backend
-    // fetch('/api/cats', { method: 'POST', body: JSON.stringify(newCat) })
+    const newCat = {
+      name,
+      photo,
+      age,
+      health,
+      personality,
+      description,
+      status: "Disponible",
+    };
 
-    // Redirige a la lista de gatos tras la publicación
-    navigate('/cats');
+    try {
+      const rawData = JSON.stringify(newCat);
+      const response = await CatService.create(rawData);
+
+      if (response.status === 201) {
+        // Si la respuesta es exitosa, abrimos el modal de éxito y limpiamos el formulario
+        setSuccessModalOpen(true);
+        setName("");
+        setPhoto("");
+        setAge("");
+        setHealth("");
+        setPersonality("");
+        setDescription("");
+      } else {
+        // En caso de error, mostramos el modal de error
+        setErrorModalOpen(true);
+      }
+    } catch (error) {
+      console.error("Error al publicar gato:", error);
+      setErrorModalOpen(true);
+    }
+  };
+
+  const closeSuccessModal = () => {
+    setSuccessModalOpen(false);
+    navigate("/cats"); // Redirige a la lista de gatos tras cerrar el modal
+  };
+
+  const closeErrorModal = () => {
+    setErrorModalOpen(false);
   };
 
   return (
     <div className="page-container">
       {/* Menú lateral */}
-      <SideMenu 
-        userRole="admin" 
-        menuItems={[
-          { text: 'Donaciones', url: '/donations', roles: ['admin', 'user'] },
-          { text: 'Lista de michis', url: '/cats', roles: ['admin', 'user'] }
-        ]}
-      />
+      <SideMenu />
 
       {/* Contenido principal */}
       <div className="post-cat-page">
@@ -102,10 +132,35 @@ function PostCat() {
                 required
               />
             </div>
-            <button type="submit">Publicar Gato</button>
-          </form>
+            <button type="submit" >Publicar Gato</button>
+            </form>
         </div>
       </div>
+
+      {/* Modal de éxito */}
+      {isSuccessModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>¡Gato publicado exitosamente!</h3>
+            <p>El nuevo gato ha sido publicado correctamente.</p>
+            <button onClick={closeSuccessModal}>Cerrar</button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de error */}
+      {isErrorModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Error al publicar gato</h3>
+            <p>
+              Ha ocurrido un error al intentar publicar el gato. Intenta
+              nuevamente.
+            </p>
+            <button onClick={closeErrorModal}>Cerrar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
