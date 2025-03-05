@@ -1,18 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SideMenu from './SideMenu';
+import AdoptionService from '../services/Adoption';
+import CatService from '../services/Cats';
 import '../styles/AdoptionForm.css';
 
 function AdoptionForm() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [catName, setCatName] = useState('');
+  const [selectedCatId, setSelectedCatId] = useState('');
   const [message, setMessage] = useState('');
+  const [cats, setCats] = useState([]);
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    async function fetchCats() {
+      const data = await CatService.getAll();
+      if (data) {
+        setCats(data.data);
+      } else {
+        console.log('No se pudieron obtener los gatos disponibles');
+      }
+    }
+    fetchCats();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes enviar la solicitud a tu backend
-    console.log('Solicitud de adopción:', { fullName, email, phone, catName, message });
+    const data = {
+      full_name: fullName,
+      email,
+      phone,
+      cat_id: selectedCatId,
+      message
+    };
+
+    try {
+      const rawData = JSON.stringify(data);
+      const response = await AdoptionService.create(rawData);
+      console.log("Respuesta de la solicitud:", response);
+      if (response.status === 201) {
+        setSuccessModalOpen(true);
+        // Limpiar el formulario
+        setFullName('');
+        setEmail('');
+        setPhone('');
+        setSelectedCatId('');
+        setMessage('');
+      } else {
+        setErrorModalOpen(true);
+      }
+    } catch (error) {
+      console.log('Error al enviar la solicitud:', error);
+      setErrorModalOpen(true);
+    }
+  };
+
+  const closeSuccessModal = () => {
+    setSuccessModalOpen(false);
+  };
+
+  const closeErrorModal = () => {
+    setErrorModalOpen(false);
   };
 
   return (
@@ -56,15 +106,20 @@ function AdoptionForm() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="catName">Nombre del gato:</label>
-              <input
-                type="text"
-                id="catName"
-                value={catName}
-                onChange={(e) => setCatName(e.target.value)}
-                placeholder="¿Qué gato deseas adoptar?"
+              <label htmlFor="catId">Selecciona el gato:</label>
+              <select
+                id="catId"
+                value={selectedCatId}
+                onChange={(e) => setSelectedCatId(e.target.value)}
                 required
-              />
+              >
+                <option value="">Seleccione un gato</option>
+                {cats.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="form-group">
               <label htmlFor="message">Mensaje:</label>
@@ -81,6 +136,28 @@ function AdoptionForm() {
           </form>
         </div>
       </div>
+
+      {/* Modal de éxito */}
+      {isSuccessModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>¡Solicitud enviada con éxito!</h3>
+            <p>Tu solicitud de adopción ha sido enviada correctamente.</p>
+            <button onClick={closeSuccessModal}>Cerrar</button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de error */}
+      {isErrorModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Error</h3>
+            <p>Hubo un problema al enviar tu solicitud. Por favor, intenta nuevamente.</p>
+            <button onClick={closeErrorModal}>Cerrar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
