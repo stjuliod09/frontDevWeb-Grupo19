@@ -34,6 +34,9 @@ function PostCat() {
     try {
       const rawData = JSON.stringify(newCat);
       const response = await CatService.create(rawData);
+      // Actualizar la imagen si es necesario
+      const imgResponse = await CatService.updateImg(response.data.id, JSON.stringify({ urlImg: photo }));
+      console.log('Respuesta updateImg:', imgResponse);
 
       if (response.status === 201) {
         // Si la respuesta es exitosa, abrimos el modal de éxito y limpiamos el formulario

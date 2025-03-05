@@ -1,7 +1,7 @@
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const token=localStorage.getItem('userRole')
+const token=localStorage.getItem('tokenAdmin')
 const cabezeraSinToken = {
   "Content-Type": "application/json",
 };

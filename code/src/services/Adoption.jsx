@@ -11,13 +11,13 @@ const AdoptionService = {
   create: async function (raw) {
     try {
       const url = APIURL + "/solicitudes";
+      console.log(url)
       const requestOptions = {
         method: "POST",
         headers: cabezeraSinToken,
         body: raw,
         redirect: "follow",
       };
-      console.log(requestOptions)
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       return data;
